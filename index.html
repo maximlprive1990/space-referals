@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Space Referrals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at bottom, #020024, #000010, #000);
+      color: #fff;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px 80px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #00f6ff;
+    }
+
+    p {
+      opacity: 0.85;
+      margin-bottom: 40px;
+    }
+
+    .referrals {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .ref-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .ref-box:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.35);
+    }
+
+    .ref-box h2 {
+      margin-bottom: 10px;
+      color: #7df9ff;
+    }
+
+    .ref-box a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: linear-gradient(45deg, #00f6ff, #0066ff);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    }
+
+    .ref-box a:hover {
+      filter: brightness(1.2);
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="space"></canvas>
+
+  <div class="container">
+    <h1>🚀 Space Referrals</h1>
+    <p>Explore l’univers et profite des meilleurs liens de parrainage</p>
+
+    <div class="referrals">
+      <div class="ref-box"><h2>MiningBlocks</h2><p>Plateforme de minage crypto</p><a href="https://miningblocks.club/?Referral=178" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>HashUp</h2><p>Cloud mining & gains passifs</p><a href="https://hashup.gg/?ref=695" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>ExClick</h2><p>Gains via clics et publicités</p><a href="https://exclick.pro/?r=718290" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>TeaserFast</h2><p>Shortlinks rémunérés</p><a href="https://teaserfast.ru/a/maximlprive90" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>FreeTonCoin</h2><p>Faucet & crypto TON</p><a href="https://freetoncoin.in?ref=7GXtPDm6Bz" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>TickTom Bot</h2><p>Bot Telegram Play-to-Earn</p><a href="https://t.me/ticktom_bot/TickTom?startapp=ref8694872657" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Mainet Bot</h2><p>Bot Telegram crypto</p><a href="https://t.me/mainetbot?start=r_6858bbdf93624dc04c5203ab" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Voxel Verse</h2><p>Jeu blockchain Telegram</p><a href="https://t.me/voxel_verse_bot/app?startapp=7707218336" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Era Staking</h2><p>Staking via Telegram</p><a href="https://t.me/EraStakingBot?start=7707218336" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>WalkCoin</h2><p>Move-to-Earn Telegram</p><a href="https://t.me/TheWalkCoinBot/WalkCoin?startapp=7707218336" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Secret Miner</h2><p>Minage Telegram</p><a href="https://t.me/secretminerbot?start=81947" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Cross Play</h2><p>Mini-jeu Telegram</p><a href="https://t.me/cross_play_bot/app?startapp=cfAc1K14" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>Kolo</h2><p>Bot Telegram rewards</p><a href="https://t.me/kolo?start=ref_7707218336" target="_blank">Accéder</a></div>
+      <div class="ref-box"><h2>FaucetPay</h2><p>Wallet & micro-paiements</p><a href="https://faucetpay.io/?r=492929" target="_blank">Accéder</a></div>
+    </div>
+
+    <footer>© 2025 - Space Theme Referral Page</footer>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('space');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.5,
+      s: Math.random() * 0.5 + 0.2
+    }));
+
+    const ships = Array.from({ length: 5 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      speed: Math.random() * 1.5 + 0.5,
+      size: Math.random() * 20 + 15
+    }));
+
+    function drawStars() {
+      ctx.fillStyle = 'white';
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+        star.y += star.s;
+        if (star.y > canvas.height) star.y = 0;
+      });
+    }
+
+    function drawShips() {
+      ships.forEach(ship => {
+        ctx.fillStyle = '#0a1a2f';
+        ctx.strokeStyle = '#00f6ff';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(ship.x, ship.y);
+        ctx.lineTo(ship.x - ship.size, ship.y + ship.size / 3);
+        ctx.lineTo(ship.x - ship.size * 1.2, ship.y);
+        ctx.lineTo(ship.x - ship.size, ship.y - ship.size / 3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(0,246,255,0.8)';
+        ctx.beginPath();
+        ctx.arc(ship.x - ship.size * 0.4, ship.y, ship.size / 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(0,150,255,0.6)';
+        ctx.beginPath();
+        ctx.moveTo(ship.x - ship.size * 1.2, ship.y - ship.size / 6);
+        ctx.lineTo(ship.x - ship.size * 1.5, ship.y);
+        ctx.lineTo(ship.x - ship.size * 1.2, ship.y + ship.size / 6);
+        ctx.closePath();
+        ctx.fill();
+
+        ship.x += ship.speed;
+        if (ship.x > canvas.width + ship.size * 2) {
+          ship.x = -ship.size * 2;
+          ship.y = Math.random() * canvas.height;
+        }
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawStars();
+      drawShips();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
